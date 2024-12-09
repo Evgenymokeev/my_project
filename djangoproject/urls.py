@@ -16,9 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from myapp.views import main
+from myapp.views import main,feed
 
 urlpatterns = [
     path("a/", main),
+    path("my-feed/", feed),
     path('admin/', admin.site.urls),
 ]
