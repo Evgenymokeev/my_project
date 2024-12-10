@@ -21,6 +21,6 @@ from myapp.views import main,feed,article
 urlpatterns = [
     path("a/", main),
     path("my-feed/", feed),
-    path("<int:article_id>/", article),
+    path("<int:article_id>", article),
     path('admin/', admin.site.urls),
 ]
