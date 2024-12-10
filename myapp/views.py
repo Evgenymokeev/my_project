@@ -9,3 +9,9 @@ def feed(request: HttpRequest) -> HttpResponse:
     return HttpResponse("Hello, world. You're at the polls page.")
 def article(request: HttpRequest, article_id: int) -> HttpResponse:
     return HttpResponse(f"Hello. It's id: {article_id} ")
+def main_article(request: HttpRequest, article_id: int) -> HttpResponse:
+    return HttpResponse(f"Hello. It's id: {article_id} comment")
+def get_article(request: HttpRequest, article_id: int) -> HttpResponse:
+    return HttpResponse(f"Hello. It's id: {article_id} update")
+def del_article(request: HttpRequest, article_id: int) -> HttpResponse:
+    return HttpResponse(f"Hello. It's id: {article_id} delete")

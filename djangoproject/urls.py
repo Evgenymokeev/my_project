@@ -16,11 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from myapp.views import main,feed,article
+from myapp.views import main,feed,article,main_article,get_article,del_article
 
 urlpatterns = [
     path("a/", main),
     path("my-feed/", feed),
     path("<int:article_id>", article),
+    path("<int:article_id>/comment/", main_article),
+    path("<int:article_id>/update/", get_article),
+    path("<int:article_id>/delete/", del_article),
     path('admin/', admin.site.urls),
 ]
