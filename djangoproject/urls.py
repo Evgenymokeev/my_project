@@ -16,16 +16,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from myapp.views import main, feed, article, main_article, update_article, del_article, get_create, get_topics, main_topic, \
-    sub_topic,un_topic,get_profile,set_register,st_password,get_login,art_logout,month_archive
+from myapp.views import (main, feed, set_article, main_article, upd_article, del_article, get_create, get_topics,main_topic, \
+    sub_topic,un_topic,get_profile,set_register,st_password,get_login,art_logout,month_archive)
+
 
 
 urlpatterns = [
     path('', main, name='main'),
     path('my-feed/', feed, name='my_feed'),
-    path('<int:article_id>/', article, name='article'),
+    path('<int:article_id>/', set_article, name='article'),
     path('<int:article_id>/comment/', main_article, name='main_article'),
-    path('<int:article_id>/update/', update_article, name='update_article'),
+    path('<int:article_id>/update/', upd_article, name='update_article'),
     path('<int:article_id>/delete/', del_article, name='delete_article'),
     path('create/', get_create, name='create_article'),
     path('topics/', get_topics, name='topics'),
@@ -35,6 +36,7 @@ urlpatterns = [
     path('profile/', get_profile, name='profile'),
     path('register/', set_register, name='register'),
     path('set-password/', st_password, name='set_password'),
+    path('login/', get_login, name='login'),
     path('logout/', art_logout, name='logout'),
     path("<int:year>/<int:month>/", month_archive, name='by_date'),
     path('admin/', admin.site.urls),

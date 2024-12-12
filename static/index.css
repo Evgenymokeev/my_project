@@ -1,0 +1,46 @@
+button.nav-button1 {
+    background-color: #1b1b1b;
+    color: white;
+    width: 150px;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    display: inline-block;
+    margin: 5px;
+}
+button.nav-button {
+    background-color: #3875d7;
+    color: white;
+    width: 150px;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    display: inline-block;
+    margin: 5px;
+}
+
+button.nav-button a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 50px;
+}
+button.nav-button1 a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 50px;
+}
+
+button.nav-button.active {
+    background-color: #4CAF50; /* Цвет активной кнопки */
+}
+button.nav-button1.active {
+    background-color: #4CAF50; /* Цвет активной кнопки */
+}
