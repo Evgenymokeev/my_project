@@ -1,8 +1,20 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<h1>list of topics</h1>
+<h1>List of topics:</h1>
+<ul>
+{% for t in topic %}
+    <li  style="display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+font-size: 70px;
+background-color: red;
+border-radius: 10px;
+border: 3px solid black;">{{ t.name }}</li>
+{% endfor %}
+</ul>
+
 {% endblock %}
 
-{% block title %}
-    Topics
-{% endblock %}
+

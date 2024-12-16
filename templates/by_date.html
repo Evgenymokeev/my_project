@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Articles for {{ calendar.month_name}} {{ year }}</h1>
+
+    {% if articles %}
+        <ul>
+            {% for article in articles %}
+                <li>
+                    <h2>{{ article.title }}</h2>
+                    <p>{{ article.content }}</p>
+                    <p>Created at: {{ article.created_at }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No articles for this month.</p>
+        <a href="{% url 'main' %}">Back to all articles</a>
+    {% endif %}
+{% endblock %}

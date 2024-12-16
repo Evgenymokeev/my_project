@@ -1,10 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Topic id</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block content %}
+<h1>Articles for topic: {{ topic.name }}</h1>
+<ul>
+    {% for article in articles %}
+    <li>
+        <h2>{{ article.title }}</h2>
+        <p>{{ article.content }}</p>
+        <p>Created at: {{ article.created_at }}</p>
+    </li>
+    {% empty %}
+    <li>No articles for this topic.</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'main' %}">Back to all articles</a>
+{% endblock %}

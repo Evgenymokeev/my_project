@@ -1,8 +1,52 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>create article</h1>
-{% endblock %}
 
-{% block title %}
-   Create Article
+
+<h1>Create articles:</h1>
+<ul>
+    {% for article in articles %}
+    <li >
+        By:{{ article.title }}
+        </li>
+        ARTICLE: <li style="background-color: #81d4fa;
+    color: black;
+    width: 30%;
+    height: 5%;
+    border: 2px solid black;
+    border-radius: 5px;
+    display: grid;
+    margin: 5px;">{{ article.content|truncatechars:50 }}...</li>
+        DATE: <li >{{ article.created_at }}</li>
+</br>
+
+        {% for comment in article.comments.all %}
+
+            COMMENTS:<li style="background-color: grey;
+    color:  white;
+    width: 30%;
+    height: 5%;
+    border: 2px solid red;
+    border-radius: 5px;
+    display: grid;
+    margin: 5px;">{{ comment.content }}</li>
+
+            {% endfor %}
+        <a style="background-color: #5897fb;color: white;
+    width: 10%;
+    height: 35px;
+    border: 1px solid black;
+    border-radius: 5px;
+    display: inline-block;
+    margin: 5px;" href="{% url 'by_date' year=article.created_at.year month=article.created_at.month %}" class="btn btn-primary">
+    View Articles from {{ article.created_at.year }}-{{ article.created_at.month }}
+</a>
+
+<hr>
+        {% endfor %}
+
+
+
+
+</ul>
+
 {% endblock %}

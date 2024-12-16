@@ -16,8 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from myapp.views import (main, feed, set_article, main_article, upd_article, del_article, get_create, get_topics,main_topic, \
-    sub_topic,un_topic,get_profile,set_register,st_password,get_login,art_logout,month_archive)
+from myapp.views import main, feed, set_article, main_article, upd_article, del_article, get_create, get_topics,main_topic,sub_topic,un_topic,get_profile,set_register,st_password,get_login,art_logout,month_archive
 
 
 
@@ -40,4 +39,5 @@ urlpatterns = [
     path('logout/', art_logout, name='logout'),
     path("<int:year>/<int:month>/", month_archive, name='by_date'),
     path('admin/', admin.site.urls),
+
 ]
