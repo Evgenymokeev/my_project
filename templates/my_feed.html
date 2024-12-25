@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if articles %}
+<ul >
+    {% for article in articles %}
+    <li>
+        {{ article.title }}
+        <p style="background-color: coral;
+    color: black;
+    width: 60%;
+    height: 30%;
+    border: 2px solid black;
+    border-radius: 5px;
+    display: grid;
+    margin: 5px;
+font-size: 25px">{{ article.content|truncatechars:50 }}</p>
+        <p>Topic:
+            <a class="update-link" href="{% url 'topic' article.topic.id %}">{{ article.topic.name }}</a>
+        </p>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No articles available. <a href="{% url 'topics' %}">Go to topics</a></p>
+{% endif %}
+{% endblock %}

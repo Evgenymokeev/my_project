@@ -1,0 +1,101 @@
+
+button.nav-button1 {
+    background-color: #1b1b1b;
+    color: white;
+    width: 150px;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    display: inline-block;
+    margin: 5px;
+}
+button.nav-button {
+    background-color: #3875d7;
+    color: white;
+    width: 150px;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    display: inline-block;
+    margin: 5px;
+}
+
+button.nav-button a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 50px;
+}
+button.nav-button1 a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 50px;
+}
+
+button.nav-button.active {
+    background-color: #4CAF50;
+}
+button.nav-button1.active {
+    background-color: #4CAF50;
+}
+.article-box {
+    background-color: coral;
+    color: black;
+    width: 30%;
+    border: 2px solid black;
+    border-radius: 5px;
+    display: grid;
+    margin: 5px;
+    padding: 10px;
+}
+
+.comment-box {
+    background-color: grey;
+    color: white;
+    width: 30%;
+    border: 2px solid red;
+    border-radius: 5px;
+    display: grid;
+    margin: 5px;
+    padding: 10px;
+}
+
+.update-link {
+    background-color: #5897fb;
+    color: white;
+    width: 8%;
+    border: 1px solid black;
+    border-radius: 5px;
+    display: inline-block;
+    margin: 5px;
+    text-align: center;
+    padding: 5px 10px;
+}
+.topic-link {
+   background-color: red;
+
+    color: black;
+
+    width: 95%;
+
+    height: 30%;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+    border: 7px solid black;
+
+    border-radius: 10px;
+
+    display: flex;
+
+    margin: 5px;
+
+font-size: 65px
+}

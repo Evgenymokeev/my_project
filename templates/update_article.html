@@ -1,0 +1,46 @@
+
+
+
+
+
+{% extends 'base.html' %}
+{% block content %}
+<h1>Update article:</h1>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="update-link">Update</button>
+</form>
+
+<ul>
+    <li>
+        <h3>{{ article.title }}</h3>
+        <p class="article-box">
+            ARTICLE: {{ article.content }}
+        </p>
+        <p>DATE: {{ article.created_at }}</p>
+
+        {% for comment in article.comments.all %}
+            <p class="comment-box">
+                COMMENT: {{ comment.content }}
+            </p>
+        {% endfor %}
+
+        {% if article.author == request.user %}
+            <a href="{% url 'update_article' pk=article.pk %}" class="update-link">Edit Article</a>
+            <form method="POST" action="{% url 'delete_article' pk=article.pk %}" style="background-color: red; color: white; width: 5%; border: 1px solid black; border-radius: 5px; margin: 5px; padding: 7px; display: inline-block;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        {% endif %}
+
+        <a href="{% url 'by_date' year=article.created_at.year month=article.created_at.month %}" class="update-link">
+            View Articles from {{ article.created_at.year }}-{{ article.created_at.month }}
+        </a>
+
+        <hr>
+    </li>
+</ul>
+
+{% endblock %}

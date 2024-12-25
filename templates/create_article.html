@@ -1,0 +1,58 @@
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    <h1>Create Article:</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="update-link">Create</button>
+    </form>
+{% else %}
+    <p>You must be logged in to create an article.</p>
+{% endif %}
+
+<h2>All Articles:</h2>
+<ul>
+    {% for article in articles %}
+    <li>
+        <strong>{{ article.title }}</strong>
+        <p style="background-color: coral;
+            color: black;
+            width: 30%;
+            height: auto;
+            border: 2px solid black;
+            border-radius: 5px;
+            display: grid;
+            margin: 5px;">
+            {{ article.content|truncatechars:50 }}...
+        </p>
+        <p>DATE: {{ article.created_at }}</p>
+
+        {% for comment in article.comments.all %}
+        <p style="background-color: grey;
+            color: white;
+            width: 30%;
+            height: auto;
+            border: 2px solid red;
+            border-radius: 5px;
+            display: grid;
+            margin: 5px;">
+            COMMENTS: {{ comment.content }}
+        </p>
+        {% endfor %}
+
+        <a href="{% url 'by_date' year=article.created_at.year month=article.created_at.month %}" class="update-link">
+            View Articles from {{ article.created_at.year }}-{{ article.created_at.month }}
+        </a>
+        <hr>
+    </li>
+    {% empty %}
+    <li>No articles available.</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
