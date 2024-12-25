@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}My website{% endblock %}</title>
 <link rel="stylesheet" href="{% static 'index.css' %}">
 </head>
 <body>
@@ -12,8 +12,20 @@
     <button class="nav-button1 {% if request.path == '/' %}active{% endif %}">
             <a href="{% url 'main' %}">Main</a>
 </button>
+{% if user.is_authenticated %}
     <button class="nav-button {% if request.path == '/my-feed/' %}active{% endif %}">
             <a href="{% url 'my_feed' %}">My Feed</a>
+        </button>
+{% endif %}
+<button class="nav-button {% if request.path == '/login/' %}active{% endif %}">
+            <a href="{% url 'login' %}">Login</a>
+        </button>
+<button class="nav-button {% if request.path == '/register/' %}active{% endif %}">
+            <a href="{% url 'register' %}">Register</a>
+        </button>
+{% if user.is_authenticated %}
+<button class="nav-button {% if request.path == '/logout/' %}active{% endif %}">
+            <a href="{% url 'logout' %}">Logout</a>
         </button>
    <button class="nav-button {% if request.path == '/profile/' %}active{% endif %}">
             <a href="{% url 'profile' %}">Profile</a>
@@ -21,15 +33,18 @@
      <button class="nav-button {% if request.path == '/topics/' %}active{% endif %}">
             <a href="{% url 'topics' %}">Topics</a>
         </button>
-     <button class="nav-button {% if request.path == '/register/' %}active{% endif %}">
-            <a href="{% url 'register' %}">Register</a>
-        </button>
+
+
+
+
     <button class="nav-button {% if request.path == '/set-password/' %}active{% endif %}">
             <a href="{% url 'set_password' %}">Set password</a>
         </button>
      <button class="nav-button {% if request.path == '/create/' %}active{% endif %}">
             <a href="{% url 'create_article' %}">Create Article</a>
-     
+</button>
+{% endif %}
+
 
 </nav>
 

@@ -1,52 +1,58 @@
+
+
 {% extends 'base.html' %}
+
 {% block content %}
+{% if user.is_authenticated %}
+    <h1>Create Article:</h1>
 
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="update-link">Create</button>
+    </form>
+{% else %}
+    <p>You must be logged in to create an article.</p>
+{% endif %}
 
-<h1>Create articles:</h1>
+<h2>All Articles:</h2>
 <ul>
     {% for article in articles %}
-    <li >
-        By:{{ article.title }}
-        </li>
-        ARTICLE: <li style="background-color: #81d4fa;
-    color: black;
-    width: 30%;
-    height: 5%;
-    border: 2px solid black;
-    border-radius: 5px;
-    display: grid;
-    margin: 5px;">{{ article.content|truncatechars:50 }}...</li>
-        DATE: <li >{{ article.created_at }}</li>
-</br>
+    <li>
+        <strong>{{ article.title }}</strong>
+        <p style="background-color: coral;
+            color: black;
+            width: 30%;
+            height: auto;
+            border: 2px solid black;
+            border-radius: 5px;
+            display: grid;
+            margin: 5px;">
+            {{ article.content|truncatechars:50 }}...
+        </p>
+        <p>DATE: {{ article.created_at }}</p>
 
         {% for comment in article.comments.all %}
-
-            COMMENTS:<li style="background-color: grey;
-    color:  white;
-    width: 30%;
-    height: 5%;
-    border: 2px solid red;
-    border-radius: 5px;
-    display: grid;
-    margin: 5px;">{{ comment.content }}</li>
-
-            {% endfor %}
-        <a style="background-color: #5897fb;color: white;
-    width: 10%;
-    height: 35px;
-    border: 1px solid black;
-    border-radius: 5px;
-    display: inline-block;
-    margin: 5px;" href="{% url 'by_date' year=article.created_at.year month=article.created_at.month %}" class="btn btn-primary">
-    View Articles from {{ article.created_at.year }}-{{ article.created_at.month }}
-</a>
-
-<hr>
+        <p style="background-color: grey;
+            color: white;
+            width: 30%;
+            height: auto;
+            border: 2px solid red;
+            border-radius: 5px;
+            display: grid;
+            margin: 5px;">
+            COMMENTS: {{ comment.content }}
+        </p>
         {% endfor %}
 
-
-
-
+        <a href="{% url 'by_date' year=article.created_at.year month=article.created_at.month %}" class="update-link">
+            View Articles from {{ article.created_at.year }}-{{ article.created_at.month }}
+        </a>
+        <hr>
+    </li>
+    {% empty %}
+    <li>No articles available.</li>
+    {% endfor %}
 </ul>
 
 {% endblock %}

@@ -40,8 +40,62 @@ button.nav-button1 a {
 }
 
 button.nav-button.active {
-    background-color: #4CAF50; /* Цвет активной кнопки */
+    background-color: #4CAF50;
 }
 button.nav-button1.active {
-    background-color: #4CAF50; /* Цвет активной кнопки */
+    background-color: #4CAF50;
+}
+.article-box {
+    background-color: coral;
+    color: black;
+    width: 30%;
+    border: 2px solid black;
+    border-radius: 5px;
+    display: grid;
+    margin: 5px;
+    padding: 10px;
+}
+
+.comment-box {
+    background-color: grey;
+    color: white;
+    width: 30%;
+    border: 2px solid red;
+    border-radius: 5px;
+    display: grid;
+    margin: 5px;
+    padding: 10px;
+}
+
+.update-link {
+    background-color: #5897fb;
+    color: white;
+    width: 8%;
+    border: 1px solid black;
+    border-radius: 5px;
+    display: inline-block;
+    margin: 5px;
+    text-align: center;
+    padding: 5px 10px;
+}
+.topic-link {
+   background-color: red;
+
+    color: black;
+
+    width: 95%;
+
+    height: 30%;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+    border: 7px solid black;
+
+    border-radius: 10px;
+
+    display: flex;
+
+    margin: 5px;
+
+font-size: 65px
 }

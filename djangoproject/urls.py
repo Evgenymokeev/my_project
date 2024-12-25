@@ -16,28 +16,38 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from myapp.views import main, feed, set_article, main_article, upd_article, del_article, get_create, get_topics,main_topic,sub_topic,un_topic,get_profile,set_register,st_password,get_login,art_logout,month_archive
-
+from myapp.views import ArticleListView,FeedView, ArticleDetailView, main_article, ArticleUpdateView, ArticleDeleteView, ArticleCreateView, TopicListView,TopicDetailView,SubscribeTopicView,UnsubscribeTopicView,ProfileView,UserRegisterView,PasswordChangeView,get_login,art_logout,MonthArchiveView
+from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib.auth.views import PasswordChangeView
 
 
 urlpatterns = [
-    path('', main, name='main'),
-    path('my-feed/', feed, name='my_feed'),
-    path('<int:article_id>/', set_article, name='article'),
+path('', ArticleListView.as_view(), name='main'),
+path('feed/', FeedView.as_view(), name='my_feed'),
+
+path('article/<int:pk>/', ArticleDetailView.as_view(), name='article_detail'),
     path('<int:article_id>/comment/', main_article, name='main_article'),
-    path('<int:article_id>/update/', upd_article, name='update_article'),
-    path('<int:article_id>/delete/', del_article, name='delete_article'),
-    path('create/', get_create, name='create_article'),
-    path('topics/', get_topics, name='topics'),
-    path('topics/<int:topic_id>/', main_topic, name='topic'),
-    path('topics/<int:topic_id>/subscribe/', sub_topic, name='subscribe_topic'),
-    path('topics/<int:topic_id>/unsubscribe/', un_topic, name='unsubscribe_topic'),
-    path('profile/', get_profile, name='profile'),
-    path('register/', set_register, name='register'),
-    path('set-password/', st_password, name='set_password'),
+    #
+path('article/<int:pk>/update/', ArticleUpdateView.as_view(), name='update_article'),
+
+
+path('article/<int:pk>/delete/', ArticleDeleteView.as_view(), name='delete_article'),
+
+path('topic/<int:pk>/', TopicDetailView.as_view(), name='topic'),
+    path('article/create/', ArticleCreateView.as_view(), name='create_article'),
+    path('topics/', TopicListView.as_view(), name='topics'),
+path('topic/<int:topic_id>/subscribe/', SubscribeTopicView.as_view(), name='subscribe_topic'),
+    path('topic/<int:topic_id>/unsubscribe/', UnsubscribeTopicView.as_view(), name='unsubscribe_topic'),
+path('profile/', ProfileView.as_view(), name='profile'),
+
+    path('register/', UserRegisterView.as_view(), name='register'),
+    path('set-password/', PasswordChangeView.as_view(), name='set_password'),
     path('login/', get_login, name='login'),
     path('logout/', art_logout, name='logout'),
-    path("<int:year>/<int:month>/", month_archive, name='by_date'),
+path('archive/<int:year>/<int:month>/', MonthArchiveView.as_view(), name='by_date'),
     path('admin/', admin.site.urls),
 
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -1,8 +1,50 @@
-{% extends 'base.html' %}
-{% block content %}
-<h1>profile</h1>
-{% endblock %}
 
-{% block title %}
-    Profile
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Welcome, {{ request.user.username }}</h1>
+
+    <h2>Your Subscriptions:</h2>
+    {% if subscriptions %}
+        <ul>
+            {% for subscription in subscriptions %}
+                <li>
+                    <a class="update-link" href="{% url 'topic' subscription.id %}">{{ subscription.name }}</a>
+
+
+                    <form method="post" action="{% url 'unsubscribe_topic' subscription.id %}" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit">Unsubscribe</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You are not subscribed to any topics. Visit <a class="update-link" href="{% url 'topics' %}">Topics</a> to subscribe.</p>
+    {% endif %}
+
+    <hr>
+
+    <h2>Subscribe to New Topics:</h2>
+    <ul>
+        {% for topic in all_topics %}
+            <li>
+                <a class="update-link" href="{% url 'topic' topic.id %}">{{ topic.name }}</a>
+
+                <form method="post" action="{% url 'subscribe_topic' topic.id %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit">Subscribe</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+
+    <h2>Actions:</h2>
+     <p><a class="update-link" href="{% url 'topics' %}">View All Topics</a></p>
+    <p><a class="update-link" href="{% url 'set_password' %}">Change Password</a></p>
+    <p><a class="update-link" href="{% url 'logout' %}">Logout</a></p>
+
 {% endblock %}

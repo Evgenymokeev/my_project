@@ -6,7 +6,7 @@
     {% for article in articles %}
     <li>
         {{ article.title }}
-        <p style="background-color: #81d4fa;
+        <p style="background-color: coral;
     color: black;
     width: 60%;
     height: 30%;
@@ -16,14 +16,7 @@
     margin: 5px;
 font-size: 25px">{{ article.content|truncatechars:50 }}</p>
         <p>Topic:
-            <a style="background-color: #5897fb;color: white;
-    width: 5%;
-    height: 30px;
-    border: 1px solid black;
-    border-radius: 5px;
-    display: inline-block;
-    margin: 5px;
-font-size: 25px" href="{% url 'topic' article.topic.id %}">{{ article.topic.name }}</a>
+            <a class="update-link" href="{% url 'topic' article.topic.id %}">{{ article.topic.name }}</a>
         </p>
     </li>
     {% endfor %}
